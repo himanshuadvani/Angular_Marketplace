@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin: auto">
+    <div class="jumbotron" style="margin:5%">
+      <h1 class="display-4">Login</h1>
+      <p class="lead">Enter your credentials to login into the site and access all the features!</p>
+      <hr class="my-4">
+
+      <div class="col-lg-6 col-md-6 form-group">
+       <form [formGroup]="login_form" (ngSubmit)="onSubmit()" *ngIf="!signupFlag else otherpart">
+          <label>Username</label>
+          <input type="text" class="form-control" [class.is-invalid]="login_form.get('uname').touched && login_form.get('uname').invalid" formControlName="uname">
+          <small [class.d-none]="login_form.get('uname').untouched || login_form.get('uname').valid" style="color: red">This field is mandatory</small>
+          <br>
+
+        
+          <label>Password</label>
+          <input type="password" class="form-control" [class.is-invalid]="login_form.get('pword').touched && login_form.get('pword').invalid" formControlName="pword">
+          <small [class.d-none]="login_form.get('pword').untouched || login_form.get('pword').valid" style="color: red">This field is mandatory</small>
+          <br>
+<br>
+
+          <button type="submit" class="btn btn-primary" [disabled]="login_form.invalid">Submit</button>
+
+          <button  class="btn btn-danger" style="float:right" (click)="Signup()">Signup</button>
+       
+        </form>
+
+        <ng-template #otherpart>
+          <form [formGroup]="signup_Form" (ngSubmit)="onSignup()" >
+            <label>Username</label>
+            <input type="text" class="form-control" [class.is-invalid]="signup_Form.get('uname').touched && signup_Form.get('uname').invalid" formControlName="uname">
+            <small [class.d-none]="signup_Form.get('uname').untouched || signup_Form.get('uname').valid" style="color: red">This field is mandatory</small>
+            <br>
+            <label>Fullname</label>
+            <input type="text" class="form-control" [class.is-invalid]="signup_Form.get('fname').touched && signup_Form.get('fname').invalid" formControlName="fname">
+            <small [class.d-none]="signup_Form.get('fname').untouched || signup_Form.get('fname').valid" style="color: red">This field is mandatory</small>
+            <br>
+  
+          
+            <label>Password</label>
+            <input type="password" class="form-control" [class.is-invalid]="signup_Form.get('pword').touched && signup_Form.get('pword').invalid" formControlName="pword">
+            <small [class.d-none]="signup_Form.get('pword').untouched || signup_Form.get('pword').valid" style="color: red">This field is mandatory</small>
+            <br>
+            <label>Confirm password</label>
+            <input type="password" class="form-control" [class.is-invalid]="signup_Form.get('cpword').touched && signup_Form.get('cpword').invalid" formControlName="cpword">
+            <small [class.d-none]="signup_Form.get('cpword').untouched || signup_Form.get('cpword').valid" style="color: red">This  is mandatory</small><br>
+            <small [class.d-none]="(signup_Form.get('cpword').value == signup_Form.get('pword').value)" style="color: red">Passwords are not same</small>
+            <br>
+  <br>
+  
+            <button type="submit" class="btn btn-primary" [disabled]="signup_Form.invalid">Signup</button>
+  
+            <button class="btn btn-danger" style="float:right" (click)="Login()">Back</button>
+         
+          </form>
+
+        </ng-template>
+
+      </div>
+
+      
+    </div>
+
+  </div>
+
+</div>

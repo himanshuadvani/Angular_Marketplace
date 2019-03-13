@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+    <div class="panel panel-primary" style="height: 500px;overflow-y: scroll;overflow-x: hidden">
+     
+      <hr>
+  <div *ngIf="balance>10000; else otherpart">
+     <div  *ngFor="let value of itemsArray">
+       <div *ngIf="value.transacted==false">
+          <div appSelected>
+    <div  class="panel-body" style="border-radius: 10px">
+      <div class="row">
+      <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+      <div class="row">
+          <div  class="col-lg-2 col-md-2 col-xs-6 col-sm-6">
+            <div *ngIf="value.image">
+          <img width="80" height="60" [src]="value.image">
+        </div>
+          </div> 
+          <div class="col-lg-10 col-md-10 col-xs-6 col-sm-6"> 
+      Item: {{value.itemname}}<br><b>Price: {{value.itemprice}} INR</b><br>Owner: {{value.itemowner}}<br>
+    </div></div>
+    </div>
+    <div *ngIf="value.itemowner!=currentUser" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <br>&nbsp;<button  class="btn btn-primary" (click)="onBuyItem(value)">Buy</button>
+    </div>
+    
+    <div *ngIf="value.itemowner==currentUser" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+        <br><div style="display: flex">
+            &nbsp;<button  class="btn btn-success" (click)="onEditItem(value.$key)">Edit Item</button>&nbsp;&nbsp;
+       <button  class="btn btn-danger" (click)="onDeleteItem(value)">Delete Item</button>
+      </div>
+
+<div *ngIf="editFlag && key==value.$key">
+<hr>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin:auto;">
+  <form>
+      <label>Name</label>
+      <input type="text" #newName class="form-control"  [value]="value.itemname">
+
+      <label>Price</label>
+      <input type="text" #newPrice class="form-control" [value]="value.itemprice">
+
+      <label>ImageURL</label>
+      <input type="text" #newURL class="form-control" [value]="value.image">
+    
+  <br>
+      <button class="btn btn-primary" (click)="EditItem(value,newName.value,newPrice.value,newURL.value)">Save Changes</button>
+  
+  </form>
+  
+    </div>
+  
+  
+  </div>
+      
+      
+
+    </div>
+
+  
+
+
+
+  </div>
+      <hr>  
+    </div>
+    </div>
+
+
+
+  </div>
+</div>
+</div>
+
+<ng-template #otherpart>
+    <div  class="panel-body" style="border-radius: 10px;">
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+  
+           <h2 style="margin: auto">You don't have enough balance to buy items...</h2>
+      </div>
+     
+    </div>
+          
+      </div>
+
+</ng-template>
+  </div>
+  </div>
+</div>

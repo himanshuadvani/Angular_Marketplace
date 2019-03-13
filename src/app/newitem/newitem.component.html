@@ -1,0 +1,28 @@
+<div class="row">
+
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin:auto;">
+<form [formGroup]="newitemForm" (ngSubmit)="addNewItem()">
+    <label>Name</label>
+    <input type="text" class="form-control"  formControlName="itemName">
+   
+    <br>
+
+  
+    <label>Price</label>
+    <input type="text" class="form-control" formControlName="itemPrice">
+    
+    <br>
+
+    <label>Image URL</label>
+    <input type="text" class="form-control"  formControlName="imageURL">
+   <small style="color:red">Copy the URL of the image in Base64 encoding format and paste in the above field.</small>
+    <br>
+  <br>
+    <button type="submit" class="btn btn-primary">Add Item</button>
+
+</form>
+
+  </div>
+
+
+</div>
